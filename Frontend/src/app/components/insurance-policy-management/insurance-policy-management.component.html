@@ -1,0 +1,46 @@
+<div>
+    <h2>Insurance Policies</h2>
+    <button (click)="loadPolicies()">Refresh Policies</button>
+
+    <!-- Display policies -->
+    <ul>
+        <li *ngFor="let policy of policies">
+            {{ policy.policyNumber }} - {{ policy.policyType }} - {{ policy.premiumAmount }}
+            <button (click)="selectPolicy(policy)">Select</button>
+            <button (click)="showUpdateForm(policy.policyId)">Update</button>
+            <button (click)="deletePolicy(policy.policyId)">Delete</button>
+        </li>
+    </ul>
+
+    <!-- Add or Update policy form -->
+    <div>
+        <h3>{{ selectedPolicy.policyId ? 'Update' : 'Add' }} Policy</h3>
+        <form>
+            <label for="policyNumber">Policy Number:</label>
+            <input type="text" id="policyNumber" [(ngModel)]="selectedPolicy.policyNumber" name="policyNumber" required>
+
+            <label for="policyType">Policy Type:</label>
+            <input type="text" id="policyType" [(ngModel)]="selectedPolicy.policyType" name="policyType" required>
+
+            <label for="premiumAmount">Premium Amount:</label>
+            <input type="number" id="premiumAmount" [(ngModel)]="selectedPolicy.premiumAmount" name="premiumAmount"
+                required>
+
+            <label for="startDate">Start Date:</label>
+            <input type="date" id="startDate" [(ngModel)]="selectedPolicy.startDate" name="startDate" required>
+
+            <label for="endDate">End Date:</label>
+            <input type="date" id="endDate" [(ngModel)]="selectedPolicy.endDate" name="endDate" required>
+
+            <label for="isActive">Is Active:</label>
+            <input type="checkbox" id="isActive" [(ngModel)]="selectedPolicy.isActive" name="isActive">
+
+            <label for="customerId">Customer ID:</label>
+            <input type="number" id="customerId" [(ngModel)]="selectedPolicy.customerId" name="customerId" required>
+
+            <button type="button" (click)="selectedPolicy.policyId ? updatePolicyApi() : addPolicy()">
+                {{ selectedPolicy.policyId ? 'Update' : 'Add' }} Policy
+            </button>
+        </form>
+    </div>
+</div>

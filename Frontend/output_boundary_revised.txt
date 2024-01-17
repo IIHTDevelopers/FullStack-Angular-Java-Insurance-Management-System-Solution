@@ -1,0 +1,1 @@
+appcomponentBoundaryShouldHaveInsurancePolicyManagementHeadingInH1=true
